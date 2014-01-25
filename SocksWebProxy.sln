@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocksWebProxy", "SocksWebProxy\SocksWebProxy.csproj", "{EF64B71A-6512-460E-8F0A-BCD456FF9461}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Org.Mentalis", "Org.Mentalis\Org.Mentalis.csproj", "{4C3F4F57-A121-44BA-97CE-B5F30ED6A735}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{46C1DAFB-8B4B-4F77-9B43-964BF2DEC92C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EF64B71A-6512-460E-8F0A-BCD456FF9461}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF64B71A-6512-460E-8F0A-BCD456FF9461}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF64B71A-6512-460E-8F0A-BCD456FF9461}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF64B71A-6512-460E-8F0A-BCD456FF9461}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C3F4F57-A121-44BA-97CE-B5F30ED6A735}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C3F4F57-A121-44BA-97CE-B5F30ED6A735}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C3F4F57-A121-44BA-97CE-B5F30ED6A735}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C3F4F57-A121-44BA-97CE-B5F30ED6A735}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46C1DAFB-8B4B-4F77-9B43-964BF2DEC92C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46C1DAFB-8B4B-4F77-9B43-964BF2DEC92C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46C1DAFB-8B4B-4F77-9B43-964BF2DEC92C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46C1DAFB-8B4B-4F77-9B43-964BF2DEC92C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
