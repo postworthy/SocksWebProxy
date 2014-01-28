@@ -38,7 +38,7 @@ namespace Tests
                 //This Can be Socks4 or Socks5
                 ProxyConfig.SocksVersion.Five
                 ));
-            Enumerable.Range(0, count).ToList().AsParallel().ForAll(new Action<int>(x =>
+            Enumerable.Range(1, count).ToList().AsParallel().ForAll(new Action<int>(x =>
             {
                 WebClient client = new WebClient();
                 client.Proxy = proxy;
@@ -48,7 +48,10 @@ namespace Tests
                 {
                     Console.WriteLine(x + ":::::::::::::::::::::");
                     Console.WriteLine("");
-                    Console.Write(html);
+                    if (html.Contains("Congratulations. This browser is configured to use Tor."))
+                        Console.WriteLine("Connected through Tor.");
+                    else
+                        Console.Write("Not connected through Tor.");
                     Console.WriteLine("");
                     Console.WriteLine(x + ":::::::::::::::::::::");
                 }
