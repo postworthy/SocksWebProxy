@@ -46,15 +46,16 @@ namespace com.LandonKey.SocksWebProxy
             Config = config;
             GetListener(config);
         }
+        private ICredentials cred = null;
         public ICredentials Credentials
         {
             get
             {
-                throw new NotImplementedException();
+                return cred;
             }
             set
             {
-                throw new NotImplementedException();
+                cred = value;
             }
         }
 

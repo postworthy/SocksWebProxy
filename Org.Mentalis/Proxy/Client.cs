@@ -57,7 +57,7 @@ public abstract class Client : IDisposable {
 	///<summary>Gets or sets the Socket connection between the proxy server and the local client.</summary>
 	///<value>A Socket instance defining the connection between the proxy server and the local client.</value>
 	///<seealso cref ="DestinationSocket"/>
-	internal Socket ClientSocket {
+	protected Socket ClientSocket {
 		get {
 			return m_ClientSocket;
 		}

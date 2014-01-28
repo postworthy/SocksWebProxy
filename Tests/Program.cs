@@ -14,7 +14,7 @@ namespace Tests
     {
         static void Main(string[] args)
         {
-            RunParallel(50, "http://google.com");
+            RunParallel(1, "https://check.torproject.org/");
 
 
             // wait until the user presses enter
@@ -38,7 +38,7 @@ namespace Tests
                 //This Can be Socks4 or Socks5
                 ProxyConfig.SocksVersion.Five
                 ));
-            Enumerable.Range(0, count-1).ToList().AsParallel().ForAll(new Action<int>(x =>
+            Enumerable.Range(0, count).ToList().AsParallel().ForAll(new Action<int>(x =>
             {
                 WebClient client = new WebClient();
                 client.Proxy = proxy;

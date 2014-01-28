@@ -76,14 +76,37 @@ namespace com.LandonKey.SocksWebProxy.Proxy
                 ((ProxySocket)DestinationSocket).ProxyUser = "username";
                 ((ProxySocket)DestinationSocket).ProxyPass = "password";
                 ((ProxySocket)DestinationSocket).ProxyType = Config.ProxyType;
+                
                 if (HeaderFields.ContainsKey("Proxy-Connection") && HeaderFields["Proxy-Connection"].ToLower().Equals("keep-alive"))
-                    DestinationSocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.KeepAlive, 1);
-                DestinationSocket.BeginConnect(DestinationEndPoint, new AsyncCallback(this.OnConnected), DestinationSocket);
+                    ((ProxySocket)DestinationSocket).SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.KeepAlive, 1);
+                ((ProxySocket)DestinationSocket).BeginConnect(DestinationEndPoint, new AsyncCallback(this.OnProxyConnected), DestinationSocket);
             }
             catch
             {
                 SendBadRequest();
                 return;
+            }
+        }
+        protected void OnProxyConnected(IAsyncResult ar)
+        {
+            try
+            {
+                ((ProxySocket)DestinationSocket).EndConnect(ar);
+                string rq;
+                if (HttpRequestType.ToUpper().Equals("CONNECT"))
+                { //HTTPS
+                    rq = HttpVersion + " 200 Connection established\r\nProxy-Agent: Mentalis Proxy Server\r\n\r\n";
+                    base.ClientSocket.BeginSend(Encoding.ASCII.GetBytes(rq), 0, rq.Length, SocketFlags.None, new AsyncCallback(this.OnOkSent), ClientSocket);
+                }
+                else
+                { //Normal HTTP
+                    rq = RebuildQuery();
+                    DestinationSocket.BeginSend(Encoding.ASCII.GetBytes(rq), 0, rq.Length, SocketFlags.None, new AsyncCallback(this.OnQuerySent), DestinationSocket);
+                }
+            }
+            catch
+            {
+                Dispose();
             }
         }
     }
