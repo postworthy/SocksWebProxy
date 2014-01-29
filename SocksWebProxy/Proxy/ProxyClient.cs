@@ -87,7 +87,7 @@ namespace com.LandonKey.SocksWebProxy.Proxy
                 return;
             }
         }
-        protected void OnProxyConnected(IAsyncResult ar)
+        private void OnProxyConnected(IAsyncResult ar)
         {
             try
             {
@@ -95,7 +95,7 @@ namespace com.LandonKey.SocksWebProxy.Proxy
                 string rq;
                 if (HttpRequestType.ToUpper().Equals("CONNECT"))
                 { //HTTPS
-                    rq = HttpVersion + " 200 Connection established\r\nProxy-Agent: Mentalis Proxy Server\r\n\r\n";
+                    rq = HttpVersion + " 200 Connection established\r\nProxy-Agent: SocksWebProxy\r\n\r\n";
                     base.ClientSocket.BeginSend(Encoding.ASCII.GetBytes(rq), 0, rq.Length, SocketFlags.None, new AsyncCallback(this.OnOkSent), ClientSocket);
                 }
                 else

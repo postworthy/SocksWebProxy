@@ -16,8 +16,7 @@ namespace com.LandonKey.SocksWebProxy
         private static List<ProxyListener> listeners;
 
         private ProxyListener GetListener(ProxyConfig config)
-        {
-            
+        {   
             lock(locker)
             {
                 if (listeners == null)
@@ -66,7 +65,13 @@ namespace com.LandonKey.SocksWebProxy
 
         public bool IsBypassed(Uri host)
         {
-            return false;
+            return !IsActive();
+        }
+
+        public bool IsActive()
+        {
+            var isSocksPortListening = System.Net.NetworkInformation.IPGlobalProperties.GetIPGlobalProperties().GetActiveTcpListeners().Any(x => x.Port == Config.SocksPort);
+            return isSocksPortListening;
         }
     }
 }
