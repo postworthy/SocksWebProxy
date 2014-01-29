@@ -39,9 +39,9 @@ You will probably want to setup Tor on your development machine.
 
 #####For Open Source Projects
 
-If you are developing and distributing open source applications under the GPL License, then you are free to use Postworthy under the GPL License.
+If you are developing and distributing open source applications under the GPL License, then you are free to use this project under the GPL License.
 <a href="http://www.gnu.org/licenses/gpl-faq.html">GPL FAQ</a>
 
 #####Commercial, Enterprise and Government Projects
 
-Contact me at Landon.Key@gmail.com for more information on Commercial, Enterprise, and Government use of the Postworthy tools.
+Contact me at Landon.Key@gmail.com for more information on Commercial, Enterprise, and Government use of the this project.
