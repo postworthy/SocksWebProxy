@@ -1,7 +1,7 @@
 ##Project Intro
 ==================================
 
-SocksWebProcy is a C# project build to make http communication over the Tor network simple and easy for C# projects.
+SocksWebProxy is a C# project build to make http communication over the Tor network simple and easy for C# projects.
 
 
 ##Project Features
