@@ -41,7 +41,8 @@ namespace Tests
             Enumerable.Range(1, count).ToList().AsParallel().ForAll(new Action<int>(x =>
             {
                 WebClient client = new WebClient();
-                client.Proxy = proxy.IsActive() ? proxy : null;
+                //client.Proxy = proxy.IsActive() ? proxy : null;
+                client.Proxy = proxy;
                 string html = client.DownloadString(url);
 
                 lock (locker)
