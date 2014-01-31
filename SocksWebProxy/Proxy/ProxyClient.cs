@@ -69,9 +69,8 @@ namespace com.LandonKey.SocksWebProxy.Proxy
             }
             try
             {
-                IPEndPoint DestinationEndPoint = new IPEndPoint(Dns.Resolve(Host).AddressList[0], Port);
                 DestinationSocket = new ProxySocket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-                // set the proxy settings
+                
                 ((ProxySocket)DestinationSocket).ProxyEndPoint = new IPEndPoint(Config.SocksAddress, Config.SocksPort);
                 ((ProxySocket)DestinationSocket).ProxyUser = "username";
                 ((ProxySocket)DestinationSocket).ProxyPass = "password";
@@ -79,7 +78,7 @@ namespace com.LandonKey.SocksWebProxy.Proxy
                 
                 if (HeaderFields.ContainsKey("Proxy-Connection") && HeaderFields["Proxy-Connection"].ToLower().Equals("keep-alive"))
                     ((ProxySocket)DestinationSocket).SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.KeepAlive, 1);
-                ((ProxySocket)DestinationSocket).BeginConnect(DestinationEndPoint, new AsyncCallback(this.OnProxyConnected), DestinationSocket);
+                ((ProxySocket)DestinationSocket).BeginConnect(Host, Port, new AsyncCallback(this.OnProxyConnected), DestinationSocket);
             }
             catch
             {
