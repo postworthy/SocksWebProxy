@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Tests
@@ -14,7 +15,7 @@ namespace Tests
     {
         static void Main(string[] args)
         {
-            RunParallel(1, "https://check.torproject.org/");
+            RunParallel(10, "https://check.torproject.org/");
 
 
             // wait until the user presses enter
@@ -38,24 +39,46 @@ namespace Tests
                 //This Can be Socks4 or Socks5
                 ProxyConfig.SocksVersion.Five
                 ));
-            Enumerable.Range(1, count).ToList().AsParallel().ForAll(new Action<int>(x =>
+            Enumerable.Range(0, count).ToList().ForEach(new Action<int>(x =>
             {
+                if (x != 0) Thread.Sleep(6000);
                 WebClient client = new WebClient();
                 //client.Proxy = proxy.IsActive() ? proxy : null;
                 client.Proxy = proxy;
-                string html = client.DownloadString(url);
+                var doc = new HtmlAgilityPack.HtmlDocument();
+                var html = client.DownloadString(url);
+                doc.LoadHtml(html);
+                var nodes = doc.DocumentNode.SelectNodes("//p/strong");
+                IPAddress ip;
+                foreach(var node in nodes)
+                {
+                    if(IPAddress.TryParse(node.InnerText, out ip))
+                    {
+
+                        lock (locker)
+                        {
+                            Console.WriteLine(x + ":::::::::::::::::::::");
+                            Console.WriteLine("");
+                            if (html.Contains("Congratulations. This browser is configured to use Tor."))
+                                Console.WriteLine("Connected through Tor with IP: " + ip.ToString());
+                            else
+                                Console.Write("Not connected through Tor with IP: " + ip.ToString());
+                            Console.WriteLine("");
+                            Console.WriteLine(x + ":::::::::::::::::::::");
+                        }
+                        return;
+                    }
+                }
 
                 lock (locker)
                 {
                     Console.WriteLine(x + ":::::::::::::::::::::");
                     Console.WriteLine("");
-                    if (html.Contains("Congratulations. This browser is configured to use Tor."))
-                        Console.WriteLine("Connected through Tor.");
-                    else
-                        Console.Write("Not connected through Tor.");
+                    Console.Write("IP not found");
                     Console.WriteLine("");
                     Console.WriteLine(x + ":::::::::::::::::::::");
                 }
+                
             }));
         }
     }
