@@ -14,11 +14,14 @@ namespace com.LandonKey.SocksWebProxy
     {
         private static object locker = new object();
         private static List<ProxyListener> listeners;
+        private static bool allowBypass;
 
-        private ProxyListener GetListener(ProxyConfig config)
+
+        private ProxyListener GetListener(ProxyConfig config, bool allowBypass = true)
         {   
             lock(locker)
             {
+                SocksWebProxy.allowBypass = allowBypass;
                 if (listeners == null)
                     listeners = new List<ProxyListener>();
 
@@ -40,10 +43,18 @@ namespace com.LandonKey.SocksWebProxy
 
         private ProxyConfig Config { get; set; }
 
-        public SocksWebProxy(ProxyConfig config = null)
+        /// <summary>
+        /// Creates a new SocksWebProxy
+        /// </summary>
+        /// <param name="config">Proxy settings</param>
+        /// <param name="allowBypass">Whether to allow bypassing the proxy server. 
+        /// The current implementation to allow bypassing the proxy server requiers elevated privileges. 
+        /// If you want to use the library in an environment with limited privileges (like Azure Websites or Azure Webjobs), set allowBypass = false</param>
+        /// <returns></returns>
+        public SocksWebProxy(ProxyConfig config = null, bool allowBypass = true)
         {
             Config = config;
-            GetListener(config);
+            GetListener(config, allowBypass);
         }
         private ICredentials cred = null;
         public ICredentials Credentials
@@ -63,9 +74,18 @@ namespace com.LandonKey.SocksWebProxy
             return new Uri("http://127.0.0.1:" + Config.HttpPort);
         }
 
+        /// <summary>
+        /// Indicates whether to use the proxy server for the specified host.
+        /// </summary>
+        /// <param name="host"></param>
+        /// <returns></returns>
         public bool IsBypassed(Uri host)
         {
-            return !IsActive();
+            if (allowBypass)
+            {
+                return !IsActive();
+            }
+            return false;
         }
 
         public bool IsActive()
