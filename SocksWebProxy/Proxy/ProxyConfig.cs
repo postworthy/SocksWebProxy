@@ -20,6 +20,8 @@ namespace com.LandonKey.SocksWebProxy.Proxy
         public int SocksPort { get; set; }
         public IPAddress SocksAddress { get; set; }
         public SocksVersion Version { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
 
         public ProxyTypes ProxyType
         {
@@ -36,6 +38,8 @@ namespace com.LandonKey.SocksWebProxy.Proxy
             SocksAddress = IPAddress.Parse("127.0.0.1");
             SocksPort = 9150;
             Version = SocksVersion.Five;
+            Username = "";
+            Password = "";
         }
         public ProxyConfig(IPAddress httpIP, int httpPort,IPAddress socksIP,int socksPort,SocksVersion version)
         {
@@ -44,6 +48,18 @@ namespace com.LandonKey.SocksWebProxy.Proxy
             SocksAddress = socksIP;
             SocksPort = socksPort;
             Version = version;
+            Username = "";
+            Password = "";
+        }
+        public ProxyConfig(IPAddress httpIP, int httpPort, IPAddress socksIP, int socksPort, SocksVersion version, string username, string password)
+        {
+            HttpAddress = httpIP;
+            HttpPort = httpPort;
+            SocksAddress = socksIP;
+            SocksPort = socksPort;
+            Version = version;
+            Username = username;
+            Password = password;
         }
     }
 }

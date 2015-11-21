@@ -72,8 +72,8 @@ namespace com.LandonKey.SocksWebProxy.Proxy
                 DestinationSocket = new ProxySocket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
                 
                 ((ProxySocket)DestinationSocket).ProxyEndPoint = new IPEndPoint(Config.SocksAddress, Config.SocksPort);
-                ((ProxySocket)DestinationSocket).ProxyUser = "username";
-                ((ProxySocket)DestinationSocket).ProxyPass = "password";
+                ((ProxySocket)DestinationSocket).ProxyUser = Config.Username;
+                ((ProxySocket)DestinationSocket).ProxyPass = Config.Password;
                 ((ProxySocket)DestinationSocket).ProxyType = Config.ProxyType;
                 
                 if (HeaderFields.ContainsKey("Proxy-Connection") && HeaderFields["Proxy-Connection"].ToLower().Equals("keep-alive"))
