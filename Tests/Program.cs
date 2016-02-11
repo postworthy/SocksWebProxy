@@ -15,14 +15,19 @@ namespace Tests
     {
         static void Main(string[] args)
         {
-            RunParallel(10, "https://check.torproject.org/");
-
-
-            // wait until the user presses enter
-            Console.WriteLine("");
+#if DEBUG
+			int runs = 10;
+#else
+			int runs = 3;
+#endif
+			RunParallel(runs, "https://check.torproject.org/");
+#if DEBUG
+			// wait until the user presses enter
+			Console.WriteLine("");
             Console.WriteLine("Press enter to continue...");
             Console.ReadLine();
-        }
+#endif
+		}
 
         private static void RunParallel(int count, string url)
         {
@@ -41,7 +46,7 @@ namespace Tests
                 ));
             Enumerable.Range(0, count).ToList().ForEach(new Action<int>(x =>
             {
-                if (x != 0) Thread.Sleep(6000);
+                if (x != 0) Thread.Sleep(5000);
                 WebClient client = new WebClient();
                 //client.Proxy = proxy.IsActive() ? proxy : null;
                 client.Proxy = proxy;
