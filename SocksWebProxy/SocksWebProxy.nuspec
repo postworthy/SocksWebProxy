@@ -8,11 +8,10 @@
 	<owners>$author$</owners>
 	<requireLicenseAcceptance>false</requireLicenseAcceptance>
 	<description>$description$</description>
-	<releaseNotes></releaseNotes>
 	<copyright>$copyright$</copyright>
     <projectUrl>https://github.com/RoninWest/SocksWebProxy</projectUrl>
     <licenseUrl>http://www.gnu.org/licenses/gpl-faq.html</licenseUrl>
     <tags>Tor Proxy for CSharp (C#) .NET</tags>
-    <releaseNotes>See https://github.com/RoninWest/SocksWebProxy/releases/$version$ for more info</releaseNotes>
+    <releaseNotes></releaseNotes>
   </metadata>
 </package>
