@@ -1,3 +1,4 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/iw4ax7ad2y0xtkf4/branch/master?svg=true)](https://ci.appveyor.com/project/ronin1/sockswebproxy/branch/master)
 ##Project Intro
 ==================================
 
