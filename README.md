@@ -34,7 +34,7 @@ You will probably want to setup Tor on your development machine.
 #####Usage
 You can download the latest release in the <a href="https://github.com/RoninWest/SocksWebProxy/releases">releases</a> section
 
-Or use the CI Nuget by adding this path to your Nuget config: https://ci.appveyor.com/nuget/braintree-dotnet
+Or use the CI Nuget by adding this path to your Nuget config: https://ci.appveyor.com/nuget/sockswebproxy
 
 ##Software Licensing Policy
 
