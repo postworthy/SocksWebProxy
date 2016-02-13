@@ -71,7 +71,7 @@ namespace com.LandonKey.SocksWebProxy.Proxy
             {
                 DestinationSocket = new ProxySocket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
                 
-                ((ProxySocket)DestinationSocket).ProxyEndPoint = new IPEndPoint(Config.SocksAddress, Config.SocksPort);
+                ((ProxySocket)DestinationSocket).ProxyEndPoint = new IPEndPoint(Config.SocksIPAddress, Config.SocksPort);
                 ((ProxySocket)DestinationSocket).ProxyUser = Config.Username;
                 ((ProxySocket)DestinationSocket).ProxyPass = Config.Password;
                 ((ProxySocket)DestinationSocket).ProxyType = Config.ProxyType;
