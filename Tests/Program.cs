@@ -38,7 +38,6 @@ namespace Tests
             {
                 if (x != 0) Thread.Sleep(5000);
                 WebClient client = new WebClient();
-                //client.Proxy = proxy.IsActive() ? proxy : null;
                 client.Proxy = proxy;
                 var doc = new HtmlAgilityPack.HtmlDocument();
                 var html = client.DownloadString(url);
