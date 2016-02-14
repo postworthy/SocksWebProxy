@@ -17,7 +17,7 @@ If you are not familiar with C# then you will want to have a look at these free 
 
 #####Windows
 
-<a href="http://www.microsoft.com/en-us/download/details.aspx?id=34673">Visual Studio 2012 Express</a>
+<a href="https://www.visualstudio.com/en-us/products/visual-studio-community-vs.aspx">Visual Studio 2013 Community Edition</a>
 
 #####Mac & Linux
 
