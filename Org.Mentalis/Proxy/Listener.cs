@@ -185,7 +185,7 @@ public abstract class Listener : IDisposable{
 	///<remarks>If this computer does not have any configured IP address, this method returns the IP address 0.0.0.0.</remarks>
 	public static IPAddress GetLocalExternalIP() {
 		try {
-			IPHostEntry he = Dns.Resolve(Dns.GetHostName());
+			IPHostEntry he = Dns.GetHostEntry(Dns.GetHostName());
 			for (int Cnt = 0; Cnt < he.AddressList.Length; Cnt++) {
 				if (IsRemoteIP(he.AddressList[Cnt]))
 					return he.AddressList[Cnt];
@@ -226,7 +226,7 @@ public abstract class Listener : IDisposable{
 	///<remarks>If this computer does not have any configured IP address, this method returns the IP address 0.0.0.0.</remarks>
 	public static IPAddress GetLocalInternalIP() {
 		try {
-			IPHostEntry he = Dns.Resolve(Dns.GetHostName());
+			IPHostEntry he = Dns.GetHostEntry(Dns.GetHostName());
 			for (int Cnt = 0; Cnt < he.AddressList.Length; Cnt++) {
 				if (IsLocalIP(he.AddressList[Cnt]))
 					return he.AddressList[Cnt];

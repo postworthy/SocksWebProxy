@@ -115,13 +115,13 @@ namespace Org.Mentalis.Network.ProxySocket {
 		/// <exception cref="ObjectDisposedException">The Socket has been closed.</exception>
 		/// <exception cref="ProxyException">An error occured while talking to the proxy server.</exception>
 		/// <remarks>If you use this method with a SOCKS4 server, it will let the server resolve the hostname. Not all SOCKS4 servers support this 'remote DNS' though.</remarks>
-		public void Connect(string host, int port) {
+		public new void Connect(string host, int port) {
 			if (host == null)
 				throw new ArgumentNullException("<host> cannot be null.");
 			if (port <= 0 || port > 65535)
 				throw new ArgumentException("Invalid port.");
 			if (this.ProtocolType != ProtocolType.Tcp || ProxyType == ProxyTypes.None || ProxyEndPoint == null)
-				base.Connect(new IPEndPoint(Dns.Resolve(host).AddressList[0], port));
+				base.Connect(new IPEndPoint(Dns.GetHostEntry(host).AddressList[0], port));
 			else {
 				base.Connect(ProxyEndPoint);
 				if (ProxyType == ProxyTypes.Socks4)
@@ -169,7 +169,7 @@ namespace Org.Mentalis.Network.ProxySocket {
 		/// <exception cref="ArgumentException">The port parameter is invalid.</exception>
 		/// <exception cref="SocketException">An operating system error occurs while creating the Socket.</exception>
 		/// <exception cref="ObjectDisposedException">The Socket has been closed.</exception>
-		public IAsyncResult BeginConnect(string host, int port, AsyncCallback callback, object state) {
+		public new IAsyncResult BeginConnect(string host, int port, AsyncCallback callback, object state) {
 			if (host == null || callback == null)
 				throw new ArgumentNullException();
 			if (port <= 0 || port >  65535)
@@ -218,7 +218,7 @@ namespace Org.Mentalis.Network.ProxySocket {
 		/// <exception cref="SocketException">There was an error while trying to resolve the host.</exception>
 		internal IAsyncProxyResult BeginDns(string host, HandShakeComplete callback) {
 			try {
-				Dns.BeginResolve(host, new AsyncCallback(this.OnResolved), this);
+				Dns.BeginGetHostEntry(host, new AsyncCallback(this.OnResolved), this);
 				return new IAsyncProxyResult();
 			} catch {
 				throw new SocketException();
@@ -230,7 +230,7 @@ namespace Org.Mentalis.Network.ProxySocket {
 		/// <param name="asyncResult">The result of the asynchronous operation.</param>
 		private void OnResolved(IAsyncResult asyncResult) {
 			try {
-				IPHostEntry dns = Dns.EndResolve(asyncResult);
+				IPHostEntry dns = Dns.EndGetHostEntry(asyncResult);
 				base.BeginConnect(new IPEndPoint(dns.AddressList[0], RemotePort), new AsyncCallback(this.OnConnect), State);
 			} catch (Exception e) {
 				OnHandShakeComplete(e);
