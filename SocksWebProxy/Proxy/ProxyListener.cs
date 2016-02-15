@@ -16,7 +16,7 @@ namespace com.LandonKey.SocksWebProxy.Proxy
         public ProxyConfig.SocksVersion Version { get; private set; }
         private ProxyConfig Config { get; set; }
         public ProxyListener(ProxyConfig config)
-            : base(config.HttpAddress, config.HttpPort)
+            : base(config.HttpIPAddress, config.HttpPort)
         {
             Port = config.HttpPort;
             Version = config.Version;

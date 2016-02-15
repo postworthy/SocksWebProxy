@@ -10,38 +10,30 @@ using com.LandonKey.SocksWebProxy.Proxy;
 
 namespace com.LandonKey.SocksWebProxy
 {
-    public class SocksWebProxy:IWebProxy
+    public class SocksWebProxy : IWebProxy
     {
-        private static object locker = new object();
-        private static List<ProxyListener> listeners;
-        private static bool allowBypass;
+        static readonly object locker = new object();
+		static readonly List<ProxyListener> listeners = new List<ProxyListener>();
+        static bool allowBypass;
 
-
-        private ProxyListener GetListener(ProxyConfig config, bool allowBypass = true)
+        void GetListener(ProxyConfig config, bool allowBypass = true)
         {   
             lock(locker)
             {
                 SocksWebProxy.allowBypass = allowBypass;
-                if (listeners == null)
-                    listeners = new List<ProxyListener>();
-
-                var listener = listeners.Where(x => x.Port == config.HttpPort).FirstOrDefault();
-
+				ProxyListener listener = listeners.Where(x => x.Port == config.HttpPort).FirstOrDefault();
                 if(listener == null)
                 {
                     listener = new ProxyListener(config);
                     listener.Start();
                     listeners.Add(listener);
                 }
-
                 if (listener.Version != config.Version) 
                     throw new Exception("Socks Version Mismatch for Port " + config.HttpPort);
-
-                return listener;
             }
         }
 
-        private ProxyConfig Config { get; set; }
+        ProxyConfig Config { get; set; }
 
         /// <summary>
         /// Creates a new SocksWebProxy
@@ -53,20 +45,18 @@ namespace com.LandonKey.SocksWebProxy
         /// <returns></returns>
         public SocksWebProxy(ProxyConfig config = null, bool allowBypass = true)
         {
-            Config = config;
+			if (config == null)
+				config = ProxyConfig.Settings ?? new ProxyConfig();
+
+			Config = config;
             GetListener(config, allowBypass);
         }
-        private ICredentials cred = null;
-        public ICredentials Credentials
+
+        ICredentials cred = null;
+        public virtual ICredentials Credentials
         {
-            get
-            {
-                return cred;
-            }
-            set
-            {
-                cred = value;
-            }
+            get { return cred; }
+            set { cred = value; }
         }
 
         public Uri GetProxy(Uri destination)

@@ -1,11 +1,10 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/iw4ax7ad2y0xtkf4/branch/master?svg=true)](https://ci.appveyor.com/project/ronin1/sockswebproxy/branch/master)
 ##Project Intro
-==================================
 
 SocksWebProxy is a C# project build to make http communication over the Tor network simple and easy for C# projects.
 
 
 ##Project Features
-==================================
 
 * C#
 * Simple Interface for WebClient & WebRequest (Just assign a new SocksWebProxy to the *.Proxy attribute)
@@ -13,20 +12,18 @@ SocksWebProxy is a C# project build to make http communication over the Tor netw
 * Easily Communicate over Tor with C#
 
 ##Tools
-==================================
 
 If you are not familiar with C# then you will want to have a look at these free development tools
 
 #####Windows
 
-<a href="http://www.microsoft.com/en-us/download/details.aspx?id=34673">Visual Studio 2012 Express</a>
+<a href="https://www.visualstudio.com/en-us/products/visual-studio-community-vs.aspx">Visual Studio 2015 Community Edition</a>
 
 #####Mac & Linux
 
 <a href="http://monodevelop.com/">MonoDevelop</a>
 
 ##Before You Build
-==================================
 
 You will probably want to setup Tor on your development machine.
 
@@ -34,8 +31,12 @@ You will probably want to setup Tor on your development machine.
 
 <a href="https://www.torproject.org/download/download.html.en">Download Tor</a>
 
+#####Usage
+You can download the latest release in the <a href="https://github.com/RoninWest/SocksWebProxy/releases">releases</a> section
+
+Or use the CI Nuget by adding this path to your Nuget config: https://ci.appveyor.com/nuget/sockswebproxy
+
 ##Software Licensing Policy
-==================================
 
 #####For Open Source Projects
 
