@@ -136,7 +136,14 @@ public abstract class Listener : IDisposable{
 	///<summary>Removes the specified Client from the client list.</summary>
 	///<param name="client">The client to remove from the client list.</param>
 	protected void RemoveClient(Client client) {
-		Clients.Remove(client);
+            if (Clients.IndexOf(client) != -1)
+            {
+                lock (Clients)
+                {
+                    if (Clients.IndexOf(client) != -1)
+                        Clients.Remove(client);
+                }
+            }
 	}
 	///<summary>Returns the number of clients in the client list.</summary>
 	///<returns>The number of connected clients.</returns>
