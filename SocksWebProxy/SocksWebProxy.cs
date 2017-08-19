@@ -104,7 +104,7 @@ namespace com.LandonKey.SocksWebProxy
                 disposedValue = true;
                 var itemsToDispose = listeners;
                 listeners = null;
-                itemsToDispose.ForEach(x => x.Dispose());
+                itemsToDispose?.ForEach(x => x?.Dispose());
             }
             GC.SuppressFinalize(this);
         }
