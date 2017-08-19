@@ -1,0 +1,17 @@
+﻿<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>SocksWebProxy</id>
+    <version>$version$</version>
+    <title>SocksWebProxy</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <licenseUrl>https://github.com/postworthy/SocksWebProxy/blob/master/README.md</licenseUrl>
+    <projectUrl>https://github.com/postworthy/SocksWebProxy/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes>Changes have been made</releaseNotes>
+    <copyright>Copyright 2016</copyright>
+    <tags>Net4 SocksWebProxy</tags>
+  </metadata>
+</package>
