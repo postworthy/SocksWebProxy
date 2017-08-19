@@ -95,25 +95,23 @@ namespace com.LandonKey.SocksWebProxy
         }
 
         #region IDisposable Support
-        private bool disposedValue = false; // To detect redundant calls
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!disposedValue)
-            {
-                if (disposing)
-                {
-                    var itemsToDispose = listeners;
-                    listeners = null;
-                    itemsToDispose.ForEach(x => x.Dispose());
-                }
-                disposedValue = true;
-            }
-        }
+        private bool disposedValue = false;
 
         public void Dispose()
         {
-            Dispose(true);
+            if (!disposedValue)
+            {
+                disposedValue = true;
+                var itemsToDispose = listeners;
+                listeners = null;
+                itemsToDispose.ForEach(x => x.Dispose());
+            }
+            GC.SuppressFinalize(this);
+        }
+
+        ~SocksWebProxy()
+        {
+            Dispose();
         }
         #endregion
     }

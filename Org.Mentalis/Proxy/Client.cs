@@ -100,22 +100,42 @@ public abstract class Client : IDisposable {
 	///<remarks>Closes the connections with the local client and the remote host. Once <c>Dispose</c> has been called, this object should not be used anymore.</remarks>
 	///<seealso cref ="System.IDisposable"/>
 	public void Dispose() {
+
 		try {
 			ClientSocket.Shutdown(SocketShutdown.Both);
 		} catch {}
+
 		try {
 			DestinationSocket.Shutdown(SocketShutdown.Both);
 		} catch {}
+
 		//Close the sockets
-		if (ClientSocket != null)
-			ClientSocket.Close();
-		if (DestinationSocket != null)
-			DestinationSocket.Close();
-		//Clean up
+	    if (ClientSocket != null)
+	    {
+	        try
+	        {
+	            ClientSocket.Close();
+	        } catch {}
+	    }
+	    if (DestinationSocket != null)
+	    {
+	        try
+	        {
+	            DestinationSocket.Close();
+	        } catch { }
+        }
+
+	    //Clean up
 		ClientSocket = null;
 		DestinationSocket = null;
-		if (Destroyer != null)
-			Destroyer(this);
+
+	    if (Destroyer != null)
+	    {
+	        try
+	        {
+	            Destroyer(this);
+	        } catch { }
+        }
 	}
 	///<summary>Returns text information about this Client object.</summary>
 	///<returns>A string representing this Client object.</returns>
