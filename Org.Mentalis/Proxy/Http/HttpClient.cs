@@ -128,11 +128,11 @@ public class HttpClient : Client {
 		int index = Query.IndexOf("\r\n\r\n");
 		if (index == -1)
 			return false;
-		HeaderFields = ParseQuery(Query);
+		HeaderFields = ParseQuery(Query.Substring(0, index));
 		if (HttpRequestType.ToUpper().Equals("POST")) {
 			try {
 				int length = int.Parse((string)HeaderFields["Content-Length"]);
-				return Query.Length >= index + 6 + length;
+				return Query.Length >= index + 4 + length;
 			} catch {
 				SendBadRequest();
 				return true;

@@ -64,6 +64,7 @@ namespace com.LandonKey.SocksWebProxy.Proxy
                 if (HttpRequestType.ToUpper().Equals("POST"))
                 {
                     int index = Query.IndexOf("\r\n\r\n");
+                    HeaderFields = ParseQuery(Query.Substring(0, index));
                     m_HttpPost = Query.Substring(index + 4);
                 }
             }
