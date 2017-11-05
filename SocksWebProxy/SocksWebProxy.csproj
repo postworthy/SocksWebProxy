@@ -1,69 +1,22 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{EF64B71A-6512-460E-8F0A-BCD456FF9461}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>com.LandonKey.SocksWebProxy</RootNamespace>
-    <AssemblyName>SocksWebProxy</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
+    <TargetFrameworks>netstandard2.0;net40</TargetFrameworks>
+    <PackageReleaseNotes>NET Standard Support</PackageReleaseNotes>
+    <RepositoryType></RepositoryType>
+    <RepositoryUrl>https://github.com/postworthy/SocksWebProxy/</RepositoryUrl>
+    <PackageLicenseUrl>https://github.com/postworthy/SocksWebProxy/blob/master/README.md</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/postworthy/SocksWebProxy/</PackageProjectUrl>
+    <Copyright>Copyright 2016</Copyright>
+    <PackageTags>Net4 SocksWebProxy</PackageTags>
+    <Company>Landon Key</Company>
+    <Authors>https://github.com/postworthy/SocksWebProxy/graphs/contributors</Authors>
+    <Version>1.1.0.0</Version>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
+    <ProjectReference Include="..\Org.Mentalis\Org.Mentalis.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Proxy\ProxyClient.cs" />
-    <Compile Include="Proxy\ProxyConfig.cs" />
-    <Compile Include="Proxy\ProxyListener.cs" />
-    <Compile Include="SocksWebProxy.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Org.Mentalis\Org.Mentalis.csproj">
-      <Project>{4c3f4f57-a121-44ba-97ce-b5f30ed6a735}</Project>
-      <Name>Org.Mentalis</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="build_nuget.cmd" />
-    <None Include="SocksWebProxy.nuspec" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+
 </Project>
