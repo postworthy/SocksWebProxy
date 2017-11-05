@@ -1,1 +1,0 @@
-﻿C:\Tools\nuget.exe pack .\SocksWebProxy.csproj -Prop Configuration=release -includereferencedprojects

@@ -19,10 +19,11 @@ If you are not familiar with C# then you will want to have a look at these free 
 
 #####Windows
 
-<a href="http://www.microsoft.com/en-us/download/details.aspx?id=34673">Visual Studio 2012 Express</a>
+<a href="https://www.visualstudio.com/downloads/">Visual Studio 2017 Community</a>
 
 #####Mac & Linux
 
+<a href="https://code.visualstudio.com/">Visual Studio Code</a>
 <a href="http://monodevelop.com/">MonoDevelop</a>
 
 ##Before You Build
