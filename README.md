@@ -1,10 +1,10 @@
-##Project Intro
+## Project Intro
 ==================================
 
 SocksWebProxy is a C# project build to make http communication over the Tor network simple and easy for C# projects.
 
 
-##Project Features
+## Project Features
 ==================================
 
 * C#
@@ -12,7 +12,7 @@ SocksWebProxy is a C# project build to make http communication over the Tor netw
 * No Need for Privoxy or similar service to translate http traffic to tor
 * Easily Communicate over Tor with C#
 
-##Tools
+## Tools
 ==================================
 
 If you are not familiar with C# then you will want to have a look at these free development tools
@@ -25,7 +25,7 @@ If you are not familiar with C# then you will want to have a look at these free 
 
 <a href="http://monodevelop.com/">MonoDevelop</a>
 
-##Before You Build
+## Before You Build
 ==================================
 
 You will probably want to setup Tor on your development machine.
@@ -34,7 +34,7 @@ You will probably want to setup Tor on your development machine.
 
 <a href="https://www.torproject.org/download/download.html.en">Download Tor</a>
 
-##Software Licensing Policy
+## Software Licensing Policy
 ==================================
 
 #####For Open Source Projects
