@@ -106,9 +106,7 @@ public class HttpClient : Client {
 			return m_HttpQuery;
 		}
 		set {
-			if (value == null)
-				throw new ArgumentNullException();
-			m_HttpQuery = value;
+                m_HttpQuery = value ?? throw new ArgumentNullException();
 		}
 	}
 	///<summary>Starts receiving data from the client connection.</summary>

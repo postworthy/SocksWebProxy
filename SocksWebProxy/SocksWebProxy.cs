@@ -12,7 +12,7 @@ namespace com.LandonKey.SocksWebProxy
 {
     public class SocksWebProxy : IWebProxy, IDisposable
     {
-        private static object locker = new object();
+        private static readonly object locker = new object();
         private static List<ProxyListener> listeners;
         private static bool allowBypass;
 

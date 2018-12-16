@@ -212,15 +212,15 @@ public abstract class Client : IDisposable {
 	public abstract void StartHandshake();
 	// private variables
 	/// <summary>Holds the address of the method to call when this client is ready to be destroyed.</summary>
-	private DestroyDelegate Destroyer;
+	private readonly DestroyDelegate Destroyer;
 	/// <summary>Holds the value of the ClientSocket property.</summary>
 	private Socket m_ClientSocket;
 	/// <summary>Holds the value of the DestinationSocket property.</summary>
 	private Socket m_DestinationSocket;
 	/// <summary>Holds the value of the Buffer property.</summary>
-	private byte[] m_Buffer = new byte[4096]; //0<->4095 = 4096
+	private readonly byte[] m_Buffer = new byte[4096]; //0<->4095 = 4096
 	/// <summary>Holds the value of the RemoteBuffer property.</summary>
-	private byte[] m_RemoteBuffer = new byte[1024];
+	private readonly byte[] m_RemoteBuffer = new byte[1024];
 }
 
 }

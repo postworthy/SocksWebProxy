@@ -79,9 +79,7 @@ namespace Org.Mentalis.Proxy
             }
             set
             {
-                if (value == null)
-                    throw new ArgumentNullException();
-                m_Address = value;
+                m_Address = value ?? throw new ArgumentNullException();
                 Restart();
             }
         }
@@ -96,9 +94,7 @@ namespace Org.Mentalis.Proxy
             }
             set
             {
-                if (value == null)
-                    throw new ArgumentNullException();
-                m_ListenSocket = value;
+                m_ListenSocket = value ?? throw new ArgumentNullException();
             }
         }
         ///<summary>Gets the list of connected clients.</summary>
@@ -253,8 +249,13 @@ namespace Org.Mentalis.Proxy
         ///<returns>True if the specified IP address is a remote address, false otherwise.</returns>
         protected static bool IsRemoteIP(IPAddress IP)
         {
-            byte First = (byte)Math.Floor(IP.Address % 256.0);
-            byte Second = (byte)Math.Floor((IP.Address % 65536.0) / 256);
+            if (IP.AddressFamily == AddressFamily.InterNetworkV6)
+            {
+                return IP.IsIPv6LinkLocal || IP.IsIPv6SiteLocal;
+            }
+            var bytes = IP.GetAddressBytes();
+            byte First = bytes[0];
+            byte Second = bytes[1];
             //Not 10.x.x.x And Not 172.16.x.x <-> 172.31.x.x And Not 192.168.x.x
             //And Not Any And Not Loopback And Not Broadcast
             return (First != 10) &&
@@ -269,12 +270,7 @@ namespace Org.Mentalis.Proxy
         ///<returns>True if the specified IP address is a local address, false otherwise.</returns>
         protected static bool IsLocalIP(IPAddress IP)
         {
-            byte First = (byte)Math.Floor(IP.Address % 256.0);
-            byte Second = (byte)Math.Floor((IP.Address % 65536.0) / 256);
-            //10.x.x.x Or 172.16.x.x <-> 172.31.x.x Or 192.168.x.x
-            return (First == 10) ||
-                (First == 172 && (Second >= 16 && Second <= 31)) ||
-                (First == 192 && Second == 168);
+            return !IsRemoteIP(IP);
         }
         ///<summary>Returns an internal IP address of this computer, if present.</summary>
         ///<returns>Returns an internal IP address of this computer; if this computer does not have an internal IP address, it returns the first local IP address it can find.</returns>
@@ -313,7 +309,7 @@ namespace Org.Mentalis.Proxy
         /// <summary>Holds the value of the ListenSocket property.</summary>
         private Socket m_ListenSocket;
         /// <summary>Holds the value of the Clients property.</summary>
-        private ArrayList m_Clients = new ArrayList();
+        private readonly ArrayList m_Clients = new ArrayList();
         /// <summary>Holds the value of the IsDisposed property.</summary>
         private bool m_IsDisposed = false;
     }
