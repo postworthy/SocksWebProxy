@@ -5,7 +5,8 @@ SocksWebProxy is a C# project build to make http communication over the Tor netw
 
 ## Project Features
 
-* C#
+* C# 
+* .NET Standard & .NET Core
 * Simple Interface for WebClient & WebRequest (Just assign a new SocksWebProxy to the *.Proxy attribute)
 * No Need for Privoxy or similar service to translate http traffic to tor
 * Easily Communicate over Tor with C#
